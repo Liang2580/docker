@@ -24,80 +24,61 @@ supervisord.conf 这个得自己看把。
 #docker run --name liang -d -p 8888:8888 liang/lnmp
 # docker run -it -d -p 100:8888 liang/lnmp
 # docker run -it -d -p 97:8888 liang/lnmp
+
+
 访问呢就访问http://IP:8888
 多建立几个
 
-[root@linux-node1 lnmp]# docker ps
-CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                                   NAMES
-9dd6e39bb995        liang/lnmp          "/bin/bash /root/star"   2 minutes ago       Up 2 minutes        22/tcp, 80/tcp, 0.0.0.0:100->8888/tcp   hungry_morse
-d969c90a3663        liang/lnmp          "/bin/bash /root/star"   2 minutes ago       Up 2 minutes        22/tcp, 80/tcp, 0.0.0.0:99->8888/tcp    evil_easley
-ae545369a192        liang/lnmp          "/bin/bash /root/star"   2 minutes ago       Up 2 minutes        22/tcp, 80/tcp, 0.0.0.0:98->8888/tcp    loving_yalow
-6dfa32e97e39        liang/lnmp          "/bin/bash /root/star"   2 minutes ago       Up 2 minutes        22/tcp, 80/tcp, 0.0.0.0:97->8888/tcp    hungry_mccarthy
-242dbc56bf9d        liang/lnmp          "/bin/bash /root/star"   2 minutes ago       Up 2 minutes        22/tcp, 80/tcp, 0.0.0.0:96->8888/tcp    peaceful_hodgkin
-cdd3e7fe5b50        liang/lnmp          "/bin/bash /root/star"   2 minutes ago       Up 2 minutes        22/tcp, 80/tcp, 0.0.0.0:95->8888/tcp    sharp_hopper
-d64cbae392ff        liang/lnmp          "/bin/bash /root/star"   2 minutes ago       Up 2 minutes        22/tcp, 80/tcp, 0.0.0.0:94->8888/tcp    jovial_euclid
-87657b6c7b74        liang/lnmp          "/bin/bash /root/star"   2 minutes ago       Up 2 minutes        22/tcp, 80/tcp, 0.0.0.0:93->8888/tcp    ecstatic_swirles
-c58fcd28d14f        liang/lnmp          "/bin/bash /root/star"   2 minutes ago       Up 2 minutes        22/tcp, 80/tcp, 0.0.0.0:92->8888/tcp    sharp_yalow
-110c183b8f58        liang/lnmp          "/bin/bash /root/star"   2 minutes ago       Up 2 minutes        22/tcp, 80/tcp, 0.0.0.0:91->8888/tcp    gloomy_ptolemy
-4eba98c24d1f        liang/lnmp          "/bin/bash /root/star"   2 minutes ago       Up 2 minutes        22/tcp, 80/tcp, 0.0.0.0:90->8888/tcp    kickass_raman
-ad8665e57551        liang/lnmp          "/bin/bash /root/star"   2 minutes ago       Up 2 minutes        22/tcp, 80/tcp, 0.0.0.0:89->8888/tcp    jovial_einstein
-b5669fa6bbca        liang/lnmp          "/bin/bash /root/star"   2 minutes ago       Up 2 minutes        22/tcp, 80/tcp, 0.0.0.0:88->8888/tcp    adoring_fermat
-8c0773c8c7a2        liang/lnmp          "/bin/bash /root/star"   2 minutes ago       Up 2 minutes        22/tcp, 80/tcp, 0.0.0.0:87->8888/tcp    distracted_sinoussi
-7c20e03c3685        liang/lnmp          "/bin/bash /root/star"   3 minutes ago       Up 3 minutes        22/tcp, 0.0.0.0:83->80/tcp              determined_almeida
-43693d688cd5        liang/lnmp          "/bin/bash /root/star"   36 minutes ago      Up 36 minutes       22/tcp, 80/tcp, 0.0.0.0:80->8888/tcp    liang2
-[root@linux-node1 lnmp]# 
+docker ps |awk '{print $1}'
+CONTAINER
+9dd6e39bb995
+d969c90a3663
+ae545369a192
+6dfa32e97e39
+242dbc56bf9d
+cdd3e7fe5b50
+d64cbae392ff
+87657b6c7b74
+c58fcd28d14f
+110c183b8f58
+4eba98c24d1f
+ad8665e57551
+b5669fa6bbca
+8c0773c8c7a2
+7c20e03c3685
+43693d688cd5
 
-那么都测试一下把
-[root@linux-node1 lnmp]# curl -I http://192.168.57.142:90/wp-admin/install.php
+curl -I http://192.168.57.142:94/wp-admin/install.php |grep HTTP 
 HTTP/1.1 200 OK
-Server: nginx/1.12.2
-Date: Sat, 20 Jan 2018 14:40:06 GMT
-Content-Type: text/html; charset=utf-8
-Connection: keep-alive
-X-Powered-By: PHP/5.4.16
-Expires: Wed, 11 Jan 1984 05:00:00 GMT
-Cache-Control: no-cache, must-revalidate, max-age=0
 
-[root@linux-node1 lnmp]# curl -I http://192.168.57.142:91/wp-admin/install.php
+curl -I http://192.168.57.142:98/wp-admin/install.php |grep HTTP 
 HTTP/1.1 200 OK
-Server: nginx/1.12.2
-Date: Sat, 20 Jan 2018 14:40:10 GMT
-Content-Type: text/html; charset=utf-8
-Connection: keep-alive
-X-Powered-By: PHP/5.4.16
-Expires: Wed, 11 Jan 1984 05:00:00 GMT
-Cache-Control: no-cache, must-revalidate, max-age=0
 
-[root@linux-node1 lnmp]# curl -I http://192.168.57.142:92/wp-admin/install.php
+curl -I http://192.168.57.142:97/wp-admin/install.php |grep HTTP 
 HTTP/1.1 200 OK
-Server: nginx/1.12.2
-Date: Sat, 20 Jan 2018 14:40:13 GMT
-Content-Type: text/html; charset=utf-8
-Connection: keep-alive
-X-Powered-By: PHP/5.4.16
-Expires: Wed, 11 Jan 1984 05:00:00 GMT
-Cache-Control: no-cache, must-revalidate, max-age=0
 
-[root@linux-node1 lnmp]# curl -I http://192.168.57.142:93/wp-admin/install.php
-^[[A^[[DHTTP/1.1 200 OK
-Server: nginx/1.12.2
-Date: Sat, 20 Jan 2018 14:40:17 GMT
-Content-Type: text/html; charset=utf-8
-Connection: keep-alive
-X-Powered-By: PHP/5.4.16
-Expires: Wed, 11 Jan 1984 05:00:00 GMT
-Cache-Control: no-cache, must-revalidate, max-age=0
-
-[root@linux-node1 lnmp]# curl -I http://192.168.57.142:94/wp-admin/install.php
+curl -I http://192.168.57.142:96/wp-admin/install.php |grep HTTP 
 HTTP/1.1 200 OK
-Server: nginx/1.12.2
-Date: Sat, 20 Jan 2018 14:40:19 GMT
-Content-Type: text/html; charset=utf-8
-Connection: keep-alive
-X-Powered-By: PHP/5.4.16
-Expires: Wed, 11 Jan 1984 05:00:00 GMT
-Cache-Control: no-cache, must-revalidate, max-age=0
+
+curl -I http://192.168.57.142:95/wp-admin/install.php |grep HTTP 
+HTTP/1.1 200 OK
 
 
-
+netstat -nltp |grep dock |awk '{print $4}'
+:::80
+:::83
+:::87
+:::88
+:::89
+:::90
+:::91
+:::92
+:::93
+:::94
+:::95
+:::96
+:::97
+:::98
+:::99
+:::100
 
