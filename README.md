@@ -30,6 +30,8 @@ supervisord.conf 这个得自己看把。
 多建立几个
 
 docker ps |awk '{print $1}'
+
+
 CONTAINER
 9dd6e39bb995
 d969c90a3663
@@ -65,6 +67,10 @@ HTTP/1.1 200 OK
 
 
 netstat -nltp |grep dock |awk '{print $4}'
+
+
+
+
 :::80
 :::83
 :::87
